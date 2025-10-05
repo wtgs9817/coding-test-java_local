@@ -17,6 +17,49 @@ package Stack_Queue;
 import java.util.*;
 
 public class Test01 {
+	
+	
+	//두번째 풀이
+	public static int[] solution(int[] numbers) {
+		Stack<Integer> stk = new Stack<>();
+		int[] answer = new int[numbers.length];
+		
+		for(int i=0; i<numbers.length; i++) {
+			
+			while(!stk.isEmpty() && numbers[stk.peek()] < numbers[i]) {
+				int idx = stk.pop();
+				answer[idx] = numbers[i];
+			}
+			
+			stk.push(i);			
+		}
+		
+		while(!stk.isEmpty()) {
+			int idx = stk.pop();
+			answer[idx] = -1;
+		}
+		
+		return answer;
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	static Stack<Integer> stk = new Stack<>();
 	
 	public static int[] solution(int[] numbers) {
@@ -42,6 +85,7 @@ public class Test01 {
 	}
 	
 	
+	*/
 	
 	public static void main(String[] args) {
 		int[] answer = solution(new int[] {9,1,3,2,6});

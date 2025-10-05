@@ -35,7 +35,7 @@ public class Test_01 {
 	static List<Integer>[] list;
 	
 	
-	public static int countFriendGroups(int n, int[][] friendships) {
+	public static int solution(int n, int[][] friendships) {
 		list = new ArrayList[n+1];
 		
 		for(int i=0; i<list.length; i++) {
@@ -54,7 +54,7 @@ public class Test_01 {
 		
 		visited = new boolean[n+1];
 		int count = 0;
-		int nn = friendships[0][0];
+		
 		for(int i=1; i<=n; i++) {
 			if(!visited[i]) {
 				dfs(i);
@@ -83,7 +83,7 @@ public class Test_01 {
 				  {2, 3},
 				  {4, 5}};
 	
-		int count = countFriendGroups(5, arr2);
+		int count = solution(5, arr2);
 		
 		System.out.println(count);
 		

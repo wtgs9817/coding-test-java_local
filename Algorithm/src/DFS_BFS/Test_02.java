@@ -128,14 +128,8 @@ public class Test_02 {
 			list[a2].add(a1);
 		}
 		
-		
-		for(int i=1; i<=n; i++) {
-			if(!visited[i]) {
 				visited[i] = true;
-				dfs(i);
-				break;
-			}
-		}
+				dfs(i);			
 		
 		return count;
 	}

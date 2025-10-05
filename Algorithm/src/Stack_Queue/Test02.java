@@ -10,13 +10,54 @@ package Stack_Queue;
 📘 백준 번호: 1874번
 🟡 백준 난이도: 실버 2
 🟣 프로그래머스 레벨 (추정): 레벨 2
+실행 예시를 gpt 한테 물어보고 확인 후 푸는 걸 추천
 
 * 전 스택 패턴을 보니 쉬웠음. 근데 문제 설명이 조금 애매해서 초반에 문제 이해하는데 조금 걸림.
  */
 import java.util.*;
 
 public class Test02 {
+	public static List<String> solution(int N, int[] target) {
+		Stack<Integer> stk = new Stack<>();
+		List<String> answer = new ArrayList<>();
+		int count = 0;
+		for(int i=1; i<=N; i++) {
+			stk.push(i);
+			answer.add("+");
+			
+			while(!stk.isEmpty() && stk.peek() == target[count]) {
+				stk.pop();
+				answer.add("-");
+				count++;
+			}
+			
+		}
+		
+		if(!stk.isEmpty()) {
+			answer.clear();
+			answer.add("NO");
+		}
+		
+		return answer;
+	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	public static List<String> solution(int N, int[] target) {
 		Stack<Integer> stk = new Stack<>();
 		List<String> answer = new ArrayList<>();
@@ -40,7 +81,7 @@ public class Test02 {
 		return answer;
 	}
 		
-		
+		*/
 		
 
 	public static void main(String[] args) {
