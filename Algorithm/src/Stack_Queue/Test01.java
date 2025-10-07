@@ -19,7 +19,68 @@ import java.util.*;
 public class Test01 {
 	
 	
-	//두번째 풀이
+	
+	//세번째 풀이
+	public static int[] solution(int[] numbers)  {
+		Stack<Integer> stk = new Stack<>();
+		int[] answer = new int[numbers.length];
+		
+		for(int i=0; i<numbers.length; i++) {
+			
+			while(!stk.isEmpty() && numbers[stk.peek()] < numbers[i]) {
+				int n = stk.pop();
+				answer[n] = numbers[i];
+			}
+			
+			
+			stk.push(i);
+		}
+		
+		while(!stk.isEmpty()) {
+			int n = stk.pop();
+			answer[n] = -1;
+		}
+		
+		return answer;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*//두번째 풀이
 	public static int[] solution(int[] numbers) {
 		Stack<Integer> stk = new Stack<>();
 		int[] answer = new int[numbers.length];
@@ -44,17 +105,9 @@ public class Test01 {
 	}
 	
 	
+	*/
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

@@ -29,7 +29,138 @@ public class Test_02 {
 	static int count = 0;
 	static boolean[][] arr;
 	
+	static Queue<Integer> que;
+	//두번째 풀이 bfs
+	public static int solution(int n, int[][] connections) {
+		que = new ArrayDeque<>();
+		
+		list = new ArrayList[n+1];
+		visited = new boolean[n+1];
+		
+		for(int i=0; i<n+1; i++) {
+			list[i] = new ArrayList<>();
+		}
+		
+		for(int[] con : connections) {
+			int a = con[0];
+			int b = con[1];
+			
+			list[a].add(b);
+			list[b].add(a);
+		}
+		
+		visited[1] = true;
+		que.offer(1);
+		bfs(1);
+		
+		return count;
+	}
 	
+	
+	
+	
+	public static void bfs(int i) {
+		
+		while(!que.isEmpty()) {
+			int n = que.poll();
+			
+			for(int num : list[n]) {
+				if(!visited[num]) {
+					visited[num] = true;
+					que.offer(num);
+					count++;
+				}
+			}
+		}
+	}
+	
+	
+
+	
+	
+	
+	/*
+	
+	//두번째 풀이 dfs02
+	public static int solution(int n, int[][] connections) {
+		list = new ArrayList[n+1];
+		visited = new boolean[n+1];
+		
+		for(int i=0; i<visited.length; i++) {
+			list[i] = new ArrayList<>();
+		}
+		
+		for(int[] arr : connections) {
+			int a = arr[0];
+			int b = arr[1];
+			
+			list[a].add(b);
+			list[b].add(a);
+		}
+		
+		
+		visited[1] = true;
+		dfs(1);
+		
+		
+		return count;
+	}
+	
+	public static void dfs(int i) {
+		
+		for(int n : list[i]) {
+			if(!visited[n]) {
+				visited[n] = true;
+				count++;
+				dfs(n);
+			}
+		}
+	}
+	*/
+	
+	
+	
+	/* 두번째 풀이 일반 dfs
+	public static int solution(int n, int[][] connections) {		
+		visited = new boolean[n+1];
+		arr = new boolean[n+1][n+1];
+		
+		
+		for(int[] con : connections) {
+			int a = con[0];
+			int b = con[1];
+			
+			arr[a][b] = true;
+			arr[b][a] = true;
+			
+		}
+		
+		
+		visited[1] = true;
+		dfs(1);
+			
+		
+		return count;
+	}
+	
+	public static void dfs(int n) {
+		
+		for(int i=1; i<arr.length; i++) {
+			
+			if(arr[n][i] && !visited[i]) {
+				visited[i] = true;
+				count++;
+				dfs(i);
+			}
+		}	
+	}
+	
+*/
+	
+	
+
+	
+	/*
 	static Queue<Integer> que;
 	//방법3 bfs
 	public static int solution(int n, int[][] connections) {
@@ -72,6 +203,7 @@ public class Test_02 {
 	}
 	
 	
+	*/
 	
 	
 	
@@ -151,15 +283,16 @@ public class Test_02 {
 	}
 	*/
 	public static void main(String[] args) {
+		int n = 6;
 		int[][] connections = {
-			    {1, 2},
-			    {2, 3},
-			    {1, 5},
-			    {5, 2},
-			    {5, 6},
-			    {4, 7}
-			};
+		    {1, 2}, {2, 3}, {4, 5}
+		};
 		
-		System.out.println(solution(7, connections));
+		System.out.println(solution(n, connections));
+		
+		
+		
+		
+		
 	}
 }

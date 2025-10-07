@@ -40,6 +40,83 @@ N: 상자의 세로 칸 수 (행)
 
 public class Test_04 {
 	
+	//두번째 풀이
+	public static int solution(int[][] tomatoes) {
+		Queue<int[]> que = new ArrayDeque<>();
+		int a = tomatoes.length;
+		int b = tomatoes[0].length;
+		
+		
+		for(int i=0; i<a; i++) {
+			
+			for(int k=0; k<b; k++) {
+				if(tomatoes[i][k] == 1) {
+					que.offer(new int[] {i,k});
+				}
+			}
+		}
+		
+		bfs(que, tomatoes);
+		
+		int answer = 0;
+		
+		for (int[] row : tomatoes) {
+		    System.out.println(Arrays.toString(row));
+		}
+		
+		
+		for(int i=0; i<a; i++) {
+			
+			for(int k=0; k<b; k++) {
+				if(tomatoes[i][k] == 0) {
+					return -1;
+				}
+				
+				if(tomatoes[i][k] > 1) {
+					answer = Math.max(answer, tomatoes[i][k]);
+				}
+			}
+		}
+		return answer-1;
+	}
+	
+	
+	public static void bfs(Queue<int[]> que, int[][] tomatoes) {
+		int a = tomatoes.length;
+		int b = tomatoes[0].length;
+		
+		//상 하 좌 우
+		int[] nx = {0,0,-1,1};
+		int[] ny = {-1,1,0,0};
+		
+		
+		while(!que.isEmpty()) {
+			int[] arr = que.poll();
+			
+			int x = arr[1];
+			int y = arr[0];
+			
+			
+			for(int i=0; i<4; i++) {
+				int dx = nx[i] + x;
+				int dy = ny[i] + y;
+				
+				if(dx < 0 || dx >= b || dy < 0 || dy >= a) continue;
+				
+				if(tomatoes[dy][dx] == -1) continue;
+				
+				if(tomatoes[dy][dx] == 0) {
+					tomatoes[dy][dx] = tomatoes[y][x] + 1;
+					que.offer(new int[] {dy,dx});
+				}
+			}		
+		}
+		
+	}
+	
+
+	
+	/*
 	
 	static Queue<int[]> que;
 	
@@ -112,6 +189,8 @@ public class Test_04 {
 		}
 	}
 	
+	*/
+	
 	public static void main(String[] args) {
 		int[][] map = {
 	            {0, 0, -1, 0, 0, 0},
@@ -132,8 +211,15 @@ public class Test_04 {
 			    {1, -1, 0, 1},
 			    {0, 0, 0, 0}
 			};
+		
+		int[][] tomatoes = {
+			    {0, 0, -1, 0, 0, 0},
+			    {0, 0, 1, 0, -1, 0},
+			    {0, 0, -1, 0, 0, 0},
+			    {0, 0, 0, 0, -1, 1}
+			};
 
-	        System.out.println(solution(badCase)); 
+	        System.out.println(solution(tomatoes)); 
 	        
 	}
 	
